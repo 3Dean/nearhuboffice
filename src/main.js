@@ -96,7 +96,7 @@ const models = [
 
 	    { 
         path: './models/computer.glb', 
-        position: { x: 5, y: 0.98, z: 5 }, 
+        position: { x: 6, y: 0.98, z: 5 }, 
 		rotation: { x: 0, y: 0, z: 0 },
         scale: { x: 1, y: 1, z: 1 },
         applyOutline: false
