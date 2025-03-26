@@ -1,10 +1,8 @@
 import { defineBackend } from '@aws-amplify/backend';
-import { storage } from '@aws-amplify/backend-storage';
+import { storage } from './storage/resource';
+import { auth } from './auth/resource';
 
 export const backend = defineBackend({
-  storage: storage({
-    access: (allow) => ({
-      'public/*': [allow.read, allow.write],
-    }),
-  }),
+  auth,
+  storage,
 });
