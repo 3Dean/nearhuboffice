@@ -59,7 +59,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 // Set a target point
-controls.target.set(5, 5, 0); // Look at point
+controls.target.set(5, 0, 5); // Look at point
 
 // Solidify function (From tutorial)
 const solidify = (mesh) => {
