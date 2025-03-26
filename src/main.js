@@ -9,6 +9,9 @@ scene.background = new THREE.Color(0x666666); // Change to any color
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(15, 2, 15);
 
+// Set a target point
+controls.target.set(5, 5, 0); // Look at point
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;  // Enable shadow maps
