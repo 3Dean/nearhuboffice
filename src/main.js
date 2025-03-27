@@ -110,7 +110,7 @@ const models = [
 	
     { 
         path: './models/cabinet.glb', 
-        position: { x: 2, y: 0, z: 8 }, 
+        position: { x: .7, y: 0, z: 8 }, 
 		rotation: { x: 0, y: Math.PI/2, z: 0 }, // 90 degrees around Y axis
         scale: { x: 1, y: 1, z: 1 },
         applyOutline: true
@@ -125,22 +125,50 @@ const models = [
     },
 	    { 
         path: './models/cabinetobjects.glb', 
-        position: { x: 2, y: 0, z: 8 }, 
+        position: { x: .7, y: 0, z: 8 }, 
 		rotation: { x: 0, y: Math.PI/2, z: 0 }, // 90 degrees around Y axis
         scale: { x: 1, y: 1, z: 1 },
         applyOutline: false
     },
     { 
+        path: './models/wallart01.glb', 
+        position: { x: .2, y: 1.6, z: 6 }, 
+		rotation: { x: 0, y: Math.PI/2, z: 0 }, // 90 degrees around Y axis
+        scale: { x: 1, y: 1, z: 1 },
+        applyOutline: false
+    },
+    { 
+        path: './models/wallart02.glb', 
+        position: { x: 4, y: 1.6, z: .2 }, 
+		rotation: { x: 0, y: 0, z: 0 }, 
+        scale: { x: 1, y: 1, z: 1 },
+        applyOutline: false
+    },
+    { 
+        path: './models/wallart03.glb', 
+        position: { x: 5.2, y: 1.6, z: .2 }, 
+		rotation: { x: 0, y: 0, z: 0 }, 
+        scale: { x: 1, y: 1, z: 1 },
+        applyOutline: false
+    },
+    { 
+        path: './models/wallart04.glb', 
+        position: { x: 6.4, y: 1.6, z: .2 }, 
+		rotation: { x: 0, y: 0, z: 0 }, 
+        scale: { x: 1, y: 1, z: 1 },
+        applyOutline: false
+    },
+    { 
         path: './models/plant.glb', 
-        position: { x: 2, y: 0, z: 2 }, 
+        position: { x: 1, y: 0, z: 1 }, 
 		rotation: { x: 0, y: 0, z: 0 },
         scale: { x: 1.2, y: 1.2, z: 1.2 },
-        applyOutline: false
+        applyOutline: true
     },
 	
 		{ 
         path: './models/printer.glb', 
-        position: { x: 2, y: 0.98, z: 8 }, 
+        position: { x: .7, y: 0.98, z: 8 }, 
 		rotation: { x: 0, y: Math.PI/2, z: 0 }, // 90 degrees around Y axis
         scale: { x: 1, y: 1, z: 1 },
         applyOutline: true
