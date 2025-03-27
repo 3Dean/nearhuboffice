@@ -115,6 +115,14 @@ const models = [
         scale: { x: 1, y: 1, z: 1 },
         applyOutline: true
     },
+
+    { 
+        path: './models/chair.glb', 
+        position: { x: 6, y: 0, z: 6 }, 
+		rotation: { x: 0, y: Math.PI/1, z: 0 }, // 90 degrees around Y axis
+        scale: { x: 1, y: 1, z: 1 },
+        applyOutline: true
+    },
 	    { 
         path: './models/cabinetobjects.glb', 
         position: { x: 2, y: 0, z: 8 }, 
