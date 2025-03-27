@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OutlineShader } from './outlineshader.js';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 // Scene, Camera, and Renderer
 const scene = new THREE.Scene();
@@ -14,6 +15,18 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;  // Enable shadow maps
 renderer.shadowMap.type = THREE.PCFShadowMap;
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap;  // Higher quality shadows
+
+// Create a new Stats object
+const stats = new Stats();
+
+// Position it in the top-left corner
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+
+// Add it to the document body
+document.body.appendChild(stats.domElement);
+
 document.body.appendChild(renderer.domElement);
 
 // Lights
@@ -368,7 +381,10 @@ models.forEach(modelData => {
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
+    // Update stats at the beginning of each frame
+    stats.begin();
     renderer.render(scene, camera);
+    stats.end();
 }
 animate();
 
