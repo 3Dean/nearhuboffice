@@ -95,6 +95,18 @@ const solidify = (mesh) => {
     scene.add(outline);
 };
 
+// Video setup
+const video = document.createElement('video');
+video.src = '/data-dashboard.mp4';
+video.crossOrigin = 'anonymous';
+video.loop = true;
+video.muted = true;
+const videoTexture = new THREE.VideoTexture(video);
+videoTexture.encoding = THREE.sRGBEncoding;
+videoTexture.minFilter = THREE.LinearFilter;
+videoTexture.magFilter = THREE.LinearFilter;
+videoTexture.format = THREE.RGBFormat;
+
 // Define an array of models to load
 const models = [
     { 
@@ -114,11 +126,28 @@ const models = [
     },
 
 	    { 
-        path: './models/computer.glb', 
+        path: './models/computerbase.glb', 
         position: { x: 6, y: 0.98, z: 5.2 }, 
 		rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 1, y: 1, z: 1 },
+        scale: { x: .5, y: .5, z: .5 },
         applyOutline: false
+        
+    },
+    { 
+        path: './models/computerkeyboard.glb', 
+        position: { x: 6, y: 0.98, z: 5.2 }, 
+		rotation: { x: 0, y: 0, z: 0 },
+        scale: { x: .5, y: .5, z: .5 },
+        applyOutline: false
+        
+    },
+    { 
+        path: './models/computerscreen.glb', 
+        position: { x: 6, y: 0.98, z: 5.2 }, 
+		rotation: { x: 0, y: 0, z: 0 },
+        scale: { x: .5, y: .5, z: .5 },
+        applyOutline: false
+        // URL for video: https://studio10b.s3.us-east-1.amazonaws.com/data-dashboard2.mp4
     },
 	
     { 
@@ -225,6 +254,15 @@ function loadModel(modelData) {
         });
         
         scene.add(model);
+
+        if (modelData.path === './models/computerscreen.glb') {
+            model.traverse((node) => {
+                if (node.isMesh) {
+                    node.material = new THREE.MeshBasicMaterial({ map: videoTexture });
+                }
+            });
+            video.play();
+        }
         
         // Apply outline if specified
         if (modelData.applyOutline) {
@@ -263,7 +301,7 @@ function loadModel(modelData) {
              }
             }
         });
-
+       
         // Add the clone to the scene
         scene.add(cabinetClone);
             
@@ -274,6 +312,281 @@ function loadModel(modelData) {
             
             console.log('Cabinet cloned and added to scene');
         }
+
+         //---Clone Begin---//
+        // Clone the desk model
+        if (modelData.path === './models/desk04.glb') {
+            // Create a clone
+            const deskClone = model.clone();
+        
+            // Position the clone elsewhere
+            deskClone.position.set(4, 0, 5);
+        
+            // Rotation for the clone
+            deskClone.rotation.set(0, 0, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            deskClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(deskClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(deskClone);
+            }
+                
+                console.log('Desk cloned and added to scene');
+            }
+    //-- Clone End --//
+    //---Clone Begin---//
+        // Clone the desk model
+        if (modelData.path === './models/computerscreen.glb') {
+            // Create a clone
+            const computerscreenClone = model.clone();
+        
+            // Position the clone elsewhere
+            computerscreenClone.position.set(4, 0.98, 5.2);
+        
+            // Rotation for the clone
+            computerscreenClone.rotation.set(0, 0, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            computerscreenClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(computerscreenClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(computerscreenClone);
+            }
+                
+                console.log('computerscreen cloned and added to scene');
+            }
+    //-- Clone End --//
+
+//---Clone Begin---//
+        // Clone the chair model
+        if (modelData.path === './models/chair.glb') {
+            // Create a clone
+            const chairClone = model.clone();
+        
+            // Position the clone elsewhere
+            chairClone.position.set(4, 0, 6);
+        
+            // Rotation for the clone
+            chairClone.rotation.set(0, Math.PI/3, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            chairClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(chairClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(chairClone);
+            }
+                
+                console.log('Chair cloned and added to scene');
+            }
+    //-- Clone End --//
+    
+    //---Clone Begin---//
+        // Clone the desk model
+        if (modelData.path === './models/computerscreen.glb') {
+            // Create a clone
+            const computerscreenClone = model.clone();
+        
+            // Position the clone elsewhere
+            computerscreenClone.position.set(4, 0.98, 5.2);
+        
+            // Rotation for the clone
+            computerscreenClone.rotation.set(0, 0, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            computerscreenClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(computerscreenClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(computerscreenClone);
+            }
+                
+                console.log('computerscreen cloned and added to scene');
+            }
+    //-- Clone End --//
+
+//---Clone Begin---//
+        // Clone the computerbase model
+        if (modelData.path === './models/computerbase.glb') {
+            // Create a clone
+            const computerbaseClone = model.clone();
+        
+            // Position the clone elsewhere
+            computerbaseClone.position.set(4, 0.98, 5.2);
+        
+            // Rotation for the clone
+            computerbaseClone.rotation.set(0, 0, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            computerbaseClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(computerbaseClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(computerbaseClone);
+            }
+                
+                console.log('computerbase cloned and added to scene');
+            }
+    //-- Clone End --//
+    //---Clone Begin---//
+        // Clone the computerkeyboard model
+        if (modelData.path === './models/computerkeyboard.glb') {
+            // Create a clone
+            const computerkeyboardClone = model.clone();
+        
+            // Position the clone elsewhere
+            computerkeyboardClone.position.set(4, 0.98, 5.2);
+        
+            // Rotation for the clone
+            computerkeyboardClone.rotation.set(0, 0, 0);
+        
+            // IMPORTANT: Make sure shadows work on the clone
+            computerkeyboardClone.traverse(function(node) {
+                if (node.isMesh) {
+                    // Explicitly set these properties
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                
+                    // If the material has any shadowSide property, ensure it's maintained
+                    if (node.material) {
+                        if (Array.isArray(node.material)) {
+                            // Handle multi-material objects
+                            node.material.forEach(mat => {
+                                mat.needsUpdate = true;
+                            });
+                        } else {
+                            // Single material
+                            node.material.needsUpdate = true;
+                        }
+                 }
+                }
+            });
+    
+            // Add the clone to the scene
+            scene.add(computerkeyboardClone);
+                
+            // Apply outline to the clone if the original had it
+            if (modelData.applyOutline) {
+                solidify(computerkeyboardClone);
+            }
+                
+                console.log('computerkeyboard cloned and added to scene');
+            }
+    //-- Clone End --//
+
 
                 // Clone the cabinet model
         if (modelData.path === './models/cabinet.glb') {
